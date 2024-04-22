@@ -1,8 +1,6 @@
 package com.therotherithethethe.dao;
 
 import com.therotherithethethe.entity.FinalEntity;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +60,7 @@ public class GenericDAO<T extends FinalEntity> implements DAO<T> {
     @Override
     public boolean save(T entity) {
         if(Objects.isNull(entity.getId())) {
-            entity.id = UUID.randomUUID();
+            entity.setId(UUID.randomUUID());
             return add(entity);
         }
         return update(entity);
@@ -75,7 +73,7 @@ public class GenericDAO<T extends FinalEntity> implements DAO<T> {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            sessionFactory.getCurrentSession().persist(entity);
+            session.persist(entity);
             transaction.commit();
             return true;
         } catch (HibernateException ex) {
@@ -94,7 +92,7 @@ public class GenericDAO<T extends FinalEntity> implements DAO<T> {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            sessionFactory.getCurrentSession().merge(entity);
+            session.merge(entity);
             transaction.commit();
             return true;
         }
@@ -115,5 +113,10 @@ public class GenericDAO<T extends FinalEntity> implements DAO<T> {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public String getColumns() {
+        return null;
     }
 }

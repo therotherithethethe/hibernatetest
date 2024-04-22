@@ -13,5 +13,6 @@
     <property name="hibernate.connection.autocommit">true</property>
     <mapping class="com.therotherithethethe.entity.Product"/>
     <mapping class="com.therotherithethethe.entity.Recipe"/>
+    <mapping class="com.therotherithethethe.entity.RecipeIngredient"/>
   </session-factory>
 </hibernate-configuration>

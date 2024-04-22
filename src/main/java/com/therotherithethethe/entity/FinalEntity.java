@@ -6,10 +6,7 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 import lombok.Getter;
 
-@Getter
-public abstract class FinalEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    public UUID id;
-
+public interface FinalEntity<T> {
+    T getId();
+    void setId(T id);
 }

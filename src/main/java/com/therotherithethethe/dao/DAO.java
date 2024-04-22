@@ -17,4 +17,5 @@ public interface DAO<T extends FinalEntity> {
     boolean add(T entity);
     boolean update(T entity);
     boolean remove(T entity);
+    String getColumns();
 }
